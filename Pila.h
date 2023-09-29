@@ -4,16 +4,15 @@
 using namespace std;
 
 
-// estructura nodo para lista simple
 struct Nodo {
-       char dato; // parte de datos
-       Nodo* siguiente;// puntero para enlazar nodos
-       // constructor
+       char dato; 
+       Nodo* siguiente;
+  
        
        Nodo(char d) 
        {
-                dato = d; // asigna los datos 
-                siguiente = NULL; // sig es null
+                dato = d; 
+                siguiente = NULL; 
        }
 
       void imprimir();
@@ -22,7 +21,7 @@ struct Nodo {
 
 
 struct Pila {
-       // solo con pN es suficiente
+
        Nodo *tope;
        
        Pila()

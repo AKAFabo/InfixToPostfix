@@ -40,7 +40,6 @@ void buildPostfix(string infixExpression)       //TODO ADD STRING BUILDING FOR P
                 char topElement = mainStack->peek()->dato;
 
                 if (!isdigit(topElement)){
-
                     if (getPriority(topElement) < getPriority(indexPosition)){           //op > peek = pushPila
                         mainStack->push(indexPosition);
                         i++;
@@ -74,21 +73,8 @@ void buildPostfix(string infixExpression)       //TODO ADD STRING BUILDING FOR P
 
 int main(int argc, char const *argv[])
 {
- 
-    //Pila * toPostfix = new Pila();
 
-    //toPostfix->push(9);
-    //toPostfix->push(10);
-    //toPostfix->push(5);
-    //toPostfix->imprimir();
-
-    //cout << toPostfix->peek(); //Imprime una posicion de memoria
-
-    //int x = getPriority('+');
-    //int y = getPriority('-');
-    //cout << x << endl;
-    //cout << y << endl;
-    buildPostfix("1+5*7-9");
+    buildPostfix("1+5*7^9");
 
     return 0;
 }

@@ -17,21 +17,64 @@ int getPriority(char op) {
             return 4;
         case '-':
             return 3;
-        case '(':
-            return 2;
-        case ')':
-            return 1;
         default:
             return 0; // Default priority for unknown operators
     }
 }
 
+void buildPostfix(string infixExpression)       //TODO ADD STRING BUILDING FOR PARENTHESIS
+{
+    string postfixExpression = "";
+    Pila * mainStack = new Pila;
+    int i = 0;
+
+    while (i < infixExpression.length()){
+        char indexPosition = infixExpression[i];
+
+        if(isdigit(indexPosition)){
+            postfixExpression += indexPosition;   
+            i++;
+        }
+        else{
+            if(!mainStack->empty()){
+                char topElement = mainStack->peek()->dato;
+
+                if (!isdigit(topElement)){
+
+                    if (getPriority(topElement) < getPriority(indexPosition)){           //op > peek = pushPila
+                        mainStack->push(indexPosition);
+                        i++;
+                    }
+                    else{
+                        postfixExpression += topElement;
+                        mainStack->pop();
+                    }
+                }
+                else{
+                    mainStack->push(indexPosition);
+                    i++;
+                }
+            }
+            else{
+                mainStack->push(indexPosition);
+                i++;
+            }
+        }
+        
+    
+    }
+    while(!mainStack->empty()){
+        char topElement = mainStack->peek()->dato;
+        postfixExpression += topElement;
+        mainStack->pop();
+
+    }
+    cout << postfixExpression << endl;
+}
 
 int main(int argc, char const *argv[])
 {
-
-
-    
+ 
     //Pila * toPostfix = new Pila();
 
     //toPostfix->push(9);
@@ -41,16 +84,11 @@ int main(int argc, char const *argv[])
 
     //cout << toPostfix->peek(); //Imprime una posicion de memoria
 
-    Pila * operatorStack = new Pila();
-    Pila * numberStack = new Pila();
-
-    int x = getPriority('+');
-    int y = getPriority('-');
-    cout << x << endl;
-    cout << y << endl;
-
-
-
+    //int x = getPriority('+');
+    //int y = getPriority('-');
+    //cout << x << endl;
+    //cout << y << endl;
+    buildPostfix("1+5*7-9");
 
     return 0;
 }

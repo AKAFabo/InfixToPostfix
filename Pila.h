@@ -6,11 +6,11 @@ using namespace std;
 
 // estructura nodo para lista simple
 struct Nodo {
-       int dato; // parte de datos
+       char dato; // parte de datos
        Nodo* siguiente;// puntero para enlazar nodos
        // constructor
        
-       Nodo(int d) 
+       Nodo(char d) 
        {
                 dato = d; // asigna los datos 
                 siguiente = NULL; // sig es null
@@ -31,7 +31,7 @@ struct Pila {
        }
        
        // encabezados de funcion
-       void push (int dato);
+       void push (char dato);
        Nodo* pop (void);
        Nodo* peek(void);
        bool empty(void);

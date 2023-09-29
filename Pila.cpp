@@ -1,6 +1,6 @@
 #include "Pila.h"
 
-void Pila::push (int dato)
+void Pila::push (char dato)
 {
      // si no hay elementos
      if (empty ())

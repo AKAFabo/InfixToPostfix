@@ -55,7 +55,18 @@ string buildPostfix(string infixExpression)       //TODO ADD STRING BUILDING FOR
             postfixExpression += indexPosition;   
             i++;
         }
-        else{
+        else if (indexPosition == '(') {
+            mainStack->push(indexPosition);
+            i++;
+        } else if (indexPosition == ')') {
+            while (!mainStack->empty() && mainStack->peek()->dato != '(') {
+                postfixExpression += mainStack->peek()->dato;
+                mainStack->pop();
+            }
+            if (!mainStack->empty() && mainStack->peek()->dato == '(')
+                mainStack->pop();
+            i++;
+        }else{
             if(!mainStack->empty()){
                 char topElement = mainStack->peek()->dato;
 
@@ -106,6 +117,7 @@ double evalPostfix(string postfixExpression){
             numberStack->push(num);
             i++;
         }
+        
         else{
 
             double secOperand = numberStack->peek()->dato;
